@@ -1,7 +1,11 @@
+import Moves from "../ui/Moves";
+import Timer from "../ui/Timer";
+
 const GameStats = () => {
   return (
-    <div>
-      <h1>Game stats</h1>
+    <div className="flex gap-[25px] md:gap-[30px]">
+      <Timer />
+      <Moves />
     </div>
   );
 };

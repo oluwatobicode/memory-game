@@ -54,7 +54,7 @@ for the multiplaer i am thinking that when a pair is matched it is counted, if a
 
 const Start = () => {
   return (
-    <main className="flex flex-row items-center justify-center bg-[#152938 min-h-screen">
+    <main className="flex flex-row items-center justify-center bg-[#152938] min-h-screen">
       <div className="w-fit flex flex-col items-center justify-center">
         <h1 className="text-[#FCFCFC] text-[40px] md:text-[40px]">memory</h1>
         <Settings />

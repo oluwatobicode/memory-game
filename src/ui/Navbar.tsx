@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useGameContext } from "../contexts/GameProvider";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const { setUpNewGame, restartGame } = useGameContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,6 +19,7 @@ const Navbar = () => {
   const handleNewGame = () => {
     setUpNewGame();
     setIsMenuOpen(false);
+    navigate("/");
   };
 
   return (

@@ -36,7 +36,7 @@ const Settings = () => {
     });
     startGame();
     console.log(state);
-    // navigate("/game");
+    navigate("/game");
   };
 
   return (

@@ -78,6 +78,9 @@ interface GameActionProps {
   setUpNewGame: () => void;
   flipCard: (cardIndex: number) => void;
   restartGame: () => void;
+  matchFound: () => void;
+  flipBack: () => void;
+  updateTimer: () => void;
 }
 
 const initialGameState: GameState = {
@@ -318,8 +321,20 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({
       });
     },
 
+    matchFound: () => {
+      dispatch({ type: "MATCH_FOUND" });
+    },
+
+    flipBack: () => {
+      dispatch({ type: "FLIP_BACK" });
+    },
+
     restartGame: () => {
       dispatch({ type: "RESTART_GAME" });
+    },
+
+    updateTimer: () => {
+      dispatch({ type: "UPDATE_TIMER" });
     },
   };
 
