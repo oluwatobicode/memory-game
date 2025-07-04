@@ -2,6 +2,11 @@ import { useGameContext } from "../contexts/GameProvider";
 
 const Moves = () => {
   const { state } = useGameContext();
+
+  if (state.number_of_players !== 1) {
+    return null;
+  }
+
   return (
     <div className="w-[151px] h-[70px] md:w-[255px] md:h-[72px] bg-[#DFE7EC] rounded-[10px] flex flex-col md:flex-row items-center md:justify-between p-2 md:p-5">
       <h1 className="text-[15px] md:text-[18px] font-bold text-[#7191A5]">

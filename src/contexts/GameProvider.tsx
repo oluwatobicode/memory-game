@@ -84,7 +84,7 @@ interface GameActionProps {
 }
 
 const initialGameState: GameState = {
-  timer: 300000, // 5 minutes in milliseconds
+  timer: 300000,
   theme: undefined,
   total_moves: 0,
   grid_size: undefined,
@@ -92,7 +92,7 @@ const initialGameState: GameState = {
   cards: [],
   flippedCards: [],
   matchedCards: [],
-  currentPlayer: 0,
+  currentPlayer: 1,
   playerScores: [],
   gameStatus: "setup",
 };
@@ -150,7 +150,7 @@ const gameReducer = (state: GameState, action: gameActions): GameState => {
       return {
         ...state,
         cards: shuffledCards,
-        timer: 300000, //  5 minutes
+        timer: 300000,
         total_moves: 0,
         flippedCards: [],
         matchedCards: [],

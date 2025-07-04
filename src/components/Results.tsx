@@ -1,12 +1,22 @@
+import { useNavigate } from "react-router";
 import { useGameContext } from "../contexts/GameProvider";
 
 const Results = () => {
+  const navigate = useNavigate();
   const { state, restartGame, setUpNewGame } = useGameContext();
-
   // Don't render if game isn't finished
   if (state.gameStatus !== "finished") {
     return null;
   }
+
+  const handleRestart = () => {
+    restartGame();
+  };
+
+  const handleNewGame = () => {
+    setUpNewGame();
+    navigate("/");
+  };
 
   // Calculate time spent (5 minutes = 300000ms)
   const timeSpent = 300000 - state.timer;
@@ -39,7 +49,7 @@ const Results = () => {
       <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
 
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="bg-white rounded-lg flex flex-col items-center justify-center w-[327px] h-[376px] md:w-[654px] md:h-[510px] mx-4 text-center">
+        <div className="bg-white rounded-[20px] flex flex-col items-center justify-center w-[327px] h-[488px] md:w-[654px] md:h-[580px] mx-4 text-center">
           <div className="mb-6">
             {isSinglePlayer ? (
               gameCompleted ? (
@@ -61,14 +71,19 @@ const Results = () => {
               )
             ) : (
               <div>
-                <h2 className="md:text-[48px] text-[24px] font-bold text-[#152938] mb-2">
-                  Game Over!
-                </h2>
                 {winner ? (
-                  <p className="text-gray-600">Player {winner.player} wins!</p>
+                  <h1 className="text-[24px] font-bold text-[#152938] md:text-[48px]">
+                    Player {winner.player} wins!
+                  </h1>
                 ) : (
-                  <p className="text-gray-600">It's a tie!</p>
+                  <p className="text-[24px] font-bold text-[#152938] md:text-[48px]">
+                    It's a tie!
+                  </p>
                 )}
+
+                <p className="md:text-[18px] text-[14px] font-bold text-[#7191A5] mb-2">
+                  Game over! Here are the results…
+                </p>
               </div>
             )}
           </div>
@@ -97,27 +112,21 @@ const Results = () => {
 
             {!isSinglePlayer && (
               <div className="space-y-2">
-                <h3 className="font-semibold text-gray-700">Final Scores:</h3>
                 {state.playerScores.map((score, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center"
+                    className={`flex justify-between items-center rounded-[5px] p-5 w-[279px] md:w-[542px] h-[48px] md:h-[72px] ${
+                      winner?.player === index + 1
+                        ? `bg-[#152938]  text-[#fff]`
+                        : `bg-[#DFE7EC] text-[#7191A5]`
+                    }`}
                   >
-                    <span
-                      className={`${
-                        winner?.player === index + 1
-                          ? "text-blue-600 font-bold"
-                          : "text-gray-600"
-                      }`}
-                    >
-                      Player {index + 1}:
+                    <span className="font-bold text-[13px] md:text-[18px]">
+                      Player {index + 1}{" "}
+                      {winner?.player === index + 1 ? "(Winner!)" : ""}
                     </span>
-                    <span
-                      className={`font-semibold ${
-                        winner?.player === index + 1 ? "text-blue-600" : ""
-                      }`}
-                    >
-                      {score} pairs
+                    <span className="font-bold text-[20px] md:text-[32px]">
+                      {score} Pairs
                     </span>
                   </div>
                 ))}
@@ -127,13 +136,13 @@ const Results = () => {
 
           <div className="flex flex-col md:flex-row gap-3 justify-center">
             <button
-              onClick={restartGame}
+              onClick={handleRestart}
               className="w-[279px] h-[48px] md:w-[264px] md:h-[52px] cursor-pointer bg-[#FDA214] text-white font-bold rounded-[26px]"
             >
               Play Again
             </button>
             <button
-              onClick={setUpNewGame}
+              onClick={handleNewGame}
               className="w-[279px] h-[48px] md:w-[264px] md:h-[52px] cursor-pointer bg-[#DFE7EC] text-[#304859] font-bold rounded-[26px]"
             >
               New Game

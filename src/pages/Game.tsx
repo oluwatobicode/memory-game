@@ -4,6 +4,7 @@ import GameStats from "../components/GameStats";
 import Navbar from "../ui/Navbar";
 import { useGameContext } from "../contexts/GameProvider";
 import Results from "../components/Results";
+import MultiPlayerStats from "../components/MultiPlayerStats";
 
 const useGameTime = () => {
   const { state, updateTimer } = useGameContext();
@@ -35,6 +36,7 @@ const Game = () => {
         <div className="flex flex-col items-center">
           <GameBoard />
           <GameStats />
+          <MultiPlayerStats />
         </div>
         <Results />
       </div>
