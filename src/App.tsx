@@ -2,7 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import Start from "./pages/Start";
 import Game from "./pages/Game";
 import GameProvider from "./contexts/GameProvider";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   return (

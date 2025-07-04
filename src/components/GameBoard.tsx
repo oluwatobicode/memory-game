@@ -90,7 +90,7 @@ const GameBoard = () => {
 
   return (
     <div className="flex flex-col items-center mt-10">
-      <div className={`grid ${gridCols} gap-[15px] mb-8`}>
+      <div className={`grid ${gridCols} gap-[20px] mb-8`}>
         {state.cards.map((_, index) => (
           <div
             key={index}
